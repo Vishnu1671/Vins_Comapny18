@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vins Company | Professional Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ALL CSS CODE HERE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; background-color: #f9f9f9; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Navbar */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-decoration: none;
+            color: #222;
+        }
+        .logo span { color: #2575fc; }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 30px; }
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: #6a11cb; }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+        }
+        .hero span {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .tagline {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: #6a11cb;
+            border: 2px solid #6a11cb;
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            margin-top: 10px;
+        }
+        .btn-form {
+            background-color: #4285F4;
+            color: white;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        /* Services */
+        .services {
+            padding: 80px 0;
+            background-color: white;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #222;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            border-radius: 2px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .service-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-top: 4px solid #6a11cb;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .service-icon {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: #2575fc;
+        }
+        
+        /* Skills Section */
+        .skills {
+            padding: 80px 0;
+            background-color: #f0f4f8;
+        }
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .skill-category {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .skill-category h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .skill-category h3 i { color: #6a11cb; }
+        .skill-category ul { list-style-position: inside; color: #555; }
+        .skill-category li { padding: 8px 0; border-bottom: 1px dashed #eee; }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: white;
+        }
+        .contact-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .contact-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 35px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+            transition: transform 0.3s ease;
+        }
+        .contact-card:hover { transform: translateY(-8px); }
+        .contact-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        .whatsapp-icon {
+            background-color: rgba(37, 211, 102, 0.1);
+            color: #25D366;
+        }
+        .form-icon {
+            background-color: rgba(66, 133, 244, 0.1);
+            color: #4285F4;
+        }
+        .small-note {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 15px;
+            font-style: italic;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #222;
+            color: #bbb;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 40px;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .nav-links { display: none; }
+            .contact-options { grid-template-columns: 1fr; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .btn { width: 100%; max-width: 250px; }
+        }
+        
+        /* Animations */
+        .animate-fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .service-card, .skill-category, .contact-card {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Vins<span>Company</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Welcome to <span>Vins Company</span></h1>
+            <p class="tagline">Professional & Technical Solutions. From Design to Code, We Deliver Excellence.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get a Quote</a>
+                <a href="#services" class="btn btn-secondary">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">What We Do</h2>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                    <h3>Graphic Design</h3>
+                    <p>Professional design using <strong>Canva</strong> & <strong>Adobe Photoshop</strong>. Logos, banners, social media posts.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>Office & Documentation</h3>
+                    <p>Expert in <strong>MS Word, Excel, PowerPoint</strong>. Templates, reports, presentations.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-code"></i></div>
+                    <h3>Technical & Coding Tasks</h3>
+                    <p>Solutions in <strong>Python, SQL, TensorFlow, Jupyter Notebook, RStudio</strong>.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-pen-fancy"></i></div>
+                    <h3>Content & Academic Writing</h3>
+                    <p>High-quality <strong>academic writing</strong>, technical content, research assistance.</p>
+                </div>
+                <!-- Service 5 -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-tasks"></i></div>
+                    <h3>General Task Execution</h3>
+                    <p>Your reliable partner for <strong>CoSpace</strong> tasks and various projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Our Toolkit & Expertise</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-desktop"></i> Design & Office</h3>
+                    <ul>
+                        <li>Adobe Photoshop</li>
+                        <li>Canva</li>
+                        <li>MS Word / PowerPoint</li>
+                        <li>Excel (Formulas, Charts)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i> Coding & Tech</h3>
+                    <ul>
+                        <li>Python (Data Science)</li>
+                        <li>Jupyter Notebook</li>
+                        <li>RStudio</li>
+                        <li>SQL (Database)</li>
+                        <li>TensorFlow (ML)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cogs"></i> Other Services</h3>
+                    <ul>
+                        <li>CoSpace Projects</li>
+                        <li>Technical Writing</li>
+                        <li>Academic Writing</li>
+                        <li>General Tasks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="contact-subtitle">Have a project? Reach out via WhatsApp or fill our Google Form.</p>
+
+            <div class="contact-options">
+                <!-- WhatsApp Button -->
+                <div class="contact-card direct-contact">
+                    <div class="contact-icon whatsapp-icon"><i class="fab fa-whatsapp"></i></div>
+                    <h3>Chat Directly on WhatsApp</h3>
+                    <p>Click below to start conversation on WhatsApp immediately. I'll respond quickly!</p>
+                    <a href="https://wa.me/917610322569?text=Hello%20Vins%20Company,%20I%20need%20your%20services" 
+                       target="_blank" 
+                       class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Message on WhatsApp
+                    </a>
+                    <p class="small-note">Clicking this will open WhatsApp directly</p>
+                </div>
+
+                <!-- Google Form Button -->
+                <div class="contact-card form-contact">
+                    <div class="contact-icon form-icon"><i class="fab fa-google"></i></div>
+                    <h3>Detailed Project Form</h3>
+                    <p>Click below to fill our Google Form with all requirements.</p>
+                    <a href="https://forms.google.com/your-form-link-here" 
+                       target="_blank" 
+                       class="btn btn-form">
+                        <i class="fas fa-edit"></i> Open Google Form
+                    </a>
+                    <p class="small-note">(Add your actual Google Form link here later)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© <span id="currentYear"></span> Vins Company. All rights reserved.</p>
+            <p>Contact: +91 76103 22569 | Professional Solutions | Reliable Execution</p>
+        </div>
+    </footer>
+
+    <!-- ALL JAVASCRIPT CODE -->
+    <script>
+        // Update copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all cards
+        document.querySelectorAll('.service-card, .skill-category, .contact-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
