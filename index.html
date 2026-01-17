@@ -87,12 +87,46 @@
             color: transparent;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            transition: all 0.3s ease;
         }
 
         .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             font-size: 1.8rem;
-            color: var(--primary);
+            transition: all 0.4s ease;
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(360deg);
+            background: var(--gradient-reverse);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .logo-main {
+            font-size: 2.2rem;
+            font-weight: 900;
+        }
+
+        .logo-sub {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 3px;
         }
 
         .nav-links { 
@@ -659,8 +693,44 @@
         }
 
         .footer-logo {
-            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
             margin-bottom: 20px;
+        }
+
+        .footer-logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo-main {
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-logo-sub {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 3px;
         }
 
         .footer-about p {
@@ -773,6 +843,8 @@
             .stat-number { font-size: 2.5rem; }
             .btn { padding: 14px 30px; }
             .footer-content { grid-template-columns: 1fr; }
+            .logo { font-size: 1.8rem; }
+            .logo-icon { width: 40px; height: 40px; font-size: 1.5rem; }
         }
 
         @media (max-width: 576px) {
@@ -781,6 +853,8 @@
             .section-title { font-size: 2rem; }
             .cta-buttons { flex-direction: column; }
             .btn { width: 100%; }
+            .logo { gap: 10px; }
+            .logo-main { font-size: 1.8rem; }
         }
 
         /* Back to Top Button */
@@ -864,8 +938,13 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <a href="#" class="logo">
-                <i class="fas fa-crown logo-icon"></i>
-                Vins<span>Chron</span>
+                <div class="logo-icon" id="logoIcon">
+                    <!-- Icon will be set by JavaScript -->
+                </div>
+                <div class="logo-text">
+                    <span class="logo-main">VinsChron</span>
+                    <span class="logo-sub">Excellence in Time</span>
+                </div>
             </a>
             
             <ul class="nav-links">
@@ -1173,9 +1252,14 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <div class="logo footer-logo">
-                        <i class="fas fa-crown"></i>
-                        Vins<span>Chron</span>
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon" id="footerLogoIcon">
+                            <!-- Icon will be set by JavaScript -->
+                        </div>
+                        <div class="footer-logo-text">
+                            <div class="footer-logo-main">VinsChron</div>
+                            <div class="footer-logo-sub">Excellence in Time</div>
+                        </div>
                     </div>
                     <p>Where Time Meets Excellence. Delivering premium professional services with cutting-edge technology and creative innovation since 2023.</p>
                     
@@ -1240,6 +1324,36 @@
                 loader.classList.add('hidden');
             }, 1000);
         });
+
+        // Set Logo Icons
+        const logoIcons = [
+            '<i class="fas fa-bolt"></i>',        // Lightning - Speed
+            '<i class="fas fa-infinity"></i>',    // Infinity - Unlimited
+            '<i class="fas fa-star"></i>',        // Star - Excellence
+            '<i class="fas fa-rocket"></i>',      // Rocket - Growth
+            '<i class="fas fa-brain"></i>',       // Brain - Intelligence
+            '<i class="fas fa-cogs"></i>',        // Cogs - Technology
+            '<i class="fas fa-gem"></i>',         // Gem - Premium
+            '<i class="fas fa-lightbulb"></i>',   // Lightbulb - Innovation
+            '<i class="fas fa-chart-line"></i>',  // Chart - Growth
+            '<i class="fas fa-shield-alt"></i>'   // Shield - Trust
+        ];
+
+        // Select random icon for logo
+        const randomIcon = logoIcons[Math.floor(Math.random() * logoIcons.length)];
+        document.getElementById('logoIcon').innerHTML = randomIcon;
+        document.getElementById('footerLogoIcon').innerHTML = randomIcon;
+
+        // Optional: Cycle through icons
+        let iconIndex = 0;
+        function cycleLogoIcon() {
+            document.getElementById('logoIcon').innerHTML = logoIcons[iconIndex];
+            document.getElementById('footerLogoIcon').innerHTML = logoIcons[iconIndex];
+            iconIndex = (iconIndex + 1) % logoIcons.length;
+        }
+
+        // Uncomment for auto-cycling icons (every 3 seconds)
+        // setInterval(cycleLogoIcon, 3000);
 
         // Navbar Scroll Effect
         window.addEventListener('scroll', function() {
@@ -1393,16 +1507,22 @@
             });
         });
 
-        // Add logo animation
+        // Logo animation
         const logo = document.querySelector('.logo');
         logo.addEventListener('mouseenter', function() {
             this.style.transform = 'scale(1.05)';
-            this.querySelector('.logo-icon').style.transform = 'rotate(15deg)';
+            this.querySelector('.logo-icon').style.transform = 'rotate(360deg)';
         });
         
         logo.addEventListener('mouseleave', function() {
             this.style.transform = 'scale(1)';
             this.querySelector('.logo-icon').style.transform = 'rotate(0)';
+        });
+
+        // Change logo icon on click
+        logo.addEventListener('click', function(e) {
+            e.preventDefault();
+            cycleLogoIcon();
         });
     </script>
 </body>
